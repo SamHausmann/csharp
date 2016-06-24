@@ -1,5 +1,6 @@
-FROM debian:stretch
+FROM rosetteapi/docker-base-layer:latest
 MAINTAINER Fiona Hasanaj
+ENV LANGUAGE=csharp
 
 #based on dockerfile by Michael Friis <friism@gmail.com>
 
@@ -16,12 +17,7 @@ RUN echo "deb http://download.mono-project.com/repo/debian wheezy/snapshots/4.2.
 
 
 RUN apt-get -y update && apt-get install -y vim && apt-get install -y git && apt-get install -y doxygen && apt-get install -y graphviz
-RUN mkdir csharp-dev
-WORKDIR csharp-dev
-COPY compile-and-run.sh compile-and-run.sh
-RUN chmod 755 compile-and-run.sh
+RUN mkdir /test-dev/tests
 COPY rosette_api.sln rosette_api.sln
 
-VOLUME ["/source"]
-
-CMD ./compile-and-run.sh
+CMD ./docker-entrypoint.sh $API_KEY $FILENAME $ALT_URL $GIT_USERNAME $VERSION $LANGUAGE; /bin/bash
