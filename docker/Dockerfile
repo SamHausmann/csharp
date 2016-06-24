@@ -16,7 +16,7 @@ RUN echo "deb http://download.mono-project.com/repo/debian wheezy/snapshots/4.2.
 	&& rm -rf /var/lib/apt/lists/*
 
 
-RUN apt-get -y update && apt-get install -y vim && apt-get install -y git && apt-get install -y doxygen && apt-get install -y graphviz
+RUN apt-get -y update && apt-get install -y vim && apt-get install -y doxygen && apt-get install -y graphviz
 RUN mkdir /test-dev/tests
 COPY rosette_api.sln rosette_api.sln
 
